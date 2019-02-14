@@ -5,6 +5,7 @@ public class ProductID {
 	private String code;
 	private char[] charArr;
 	
+	
 	public ProductID(String code) {
 		this.characters = countChars(code);
 		this.code = code;
@@ -36,8 +37,31 @@ public class ProductID {
 	public String getCode() {
 		return code;
 	}
+	
+	public char[] getCharArr() {
+		return charArr;
+	}
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public boolean offByOne(ProductID next) {
+		Boolean ret = false;
+		int count = 0;
+		char[] original = this.getCharArr();
+		char[] testing = next.getCharArr();
+		int length = original.length;
+		int i = 0;
+		while (count <= 1 && i < length) {
+			if (original[i] != testing[i]) {
+				count++;
+			}
+			i++;
+		}
+		if (count <= 1) {
+			ret = true;
+		}
+		return ret;
 	}
 }
